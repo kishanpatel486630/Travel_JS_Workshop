@@ -42,7 +42,7 @@ app.post("/api/insert",(req,res)=>{
             
             const query = "insert into add_desti (desti_name ,stay_night,start_price,desti_file) values(?,?,?,?) "
             con.query(query,[desti_name,stay_night,start_price,desti_file])
-            console.log(query)
+            // console.log(query)
             
             res.send({
                 message:"Data Submit"
@@ -53,6 +53,13 @@ app.post("/api/insert",(req,res)=>{
     })
 });
 
+app.get("/api/data_list",(req,resp)=>{
+    const fetch_data ="select * from add_desti";
+    con.query(fetch_data,(err,result)=>{
+        // console.log(result);
+        resp.send(result);
+    });
+})
 // app.post("/api/insert",(req,res)=>{
 //     var name=req.body.name;
 //     var email = req.body.email
